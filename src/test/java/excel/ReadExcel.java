@@ -29,8 +29,8 @@ public class ReadExcel {
     @Test
     public void readExcelData() {
         List<Map<String,String>> excelData = new ArrayList<>();
-        try(FileInputStream inputStream = new FileInputStream("src/test/resources/TestData.xlsx")) {
-            Workbook workbook = new XSSFWorkbook(inputStream);
+        try(FileInputStream inputStream = new FileInputStream("src/test/resources/TestData.xlsx");
+            Workbook workbook = new XSSFWorkbook(inputStream);) {
             Sheet sheet = workbook.getSheet("InputData");
             Row headerRow = sheet.getRow(0);
             for(Row row : sheet) {
@@ -45,6 +45,7 @@ public class ReadExcel {
                 }
                 excelData.add(eachExcelData);
             }
+
             for(Map<String,String> data : excelData) {
                 System.out.println("Username - "+data.get("Username")+"\t");
                 System.out.println("Password - "+data.get("Password")+"\t");
